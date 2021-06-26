@@ -1,0 +1,66 @@
+@import '~mdb-ui-kit/css/mdb.min.css';
+*{
+
+    margin: 0px;
+    padding: 0px;
+ box-sizing: border-box;
+ 
+
+}
+body{
+    height: 100vh;
+}
+.container{
+
+    color:black;
+    text-align: center;
+    /* border: 2px red solid; */
+    
+    margin-top:50px;
+}
+.search-Form{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+
+    padding:10px;
+    margin-top: 100px;
+ 
+}
+.title{
+    color:black;
+    text-align: center;
+    font-size: 5rem;
+    padding-top:5rem;
+color: #0093E9;
+color: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+
+    
+}
+.title:hover{
+    cursor:pointer;
+   color: #74EBD5;
+    color: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%);
+
+    
+
+    
+}
+.lic{
+    font-size :1.5rem;
+    line-height: 4rem;
+    font-weight: 500;
+
+}
+.Location{
+    font-size: 4rem;
+    font-weight: 600;
+}
+.Temperature{
+    font-size:5rem;
+    font-weight: 600;
+
+}
+footer {
+    text-align: center;
+}
