@@ -1,15 +1,25 @@
 let btn = document.querySelector('.btn')
 let searchForm = document.querySelector('.search-Form')
-const APP_KEY = 'bb32a29f95515a107151b35fda44d036';
+const APP_KEY = 'adfbe5d322ee0e5856aee36f778a4e41';
 let searchQuery = ''
 let form_control = document.querySelector('.form-control')
-let result = document.querySelector('.container')
-getIp()
 
-async function getIp() {
-const exampleReq = `http://api.weatherstack.com/current?access_key=${APP_KEY}&query=fetch:ip&units=f`;
+let result = document.querySelector('.container')
+getLocation()
+function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(getIp);
+    } else {
+      x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+  }
+  
+
+async function getIp(position) {
+const exampleReq = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude }&lon=${position.coords.longitude}&appid=${APP_KEY}&units=imperial`;
 const response = await fetch(exampleReq)
 const data = await response.json();
+
 htmlcodes(data);
 console.log(data)
 
@@ -26,7 +36,7 @@ searchQuery = e.target.querySelector('input').value
 fetchAPI();
 })
 async function fetchAPI() {
-const exampleReq = `http://api.weatherstack.com/current?access_key=${APP_KEY}&query=${searchQuery}&units=f`;
+const exampleReq = `https://api.openweathermap.org/data/2.5/weather?q=${searchQuery}&appid=${APP_KEY}&units=imperial`
 const response = await fetch(exampleReq)
 const data = await response.json();
 htmlcodes(data);
@@ -37,17 +47,19 @@ console.log(data)
 
 }
 function htmlcodes(results){
-let html =
-
+    let count_temp = Math.floor(results.main.temp)
+    let count_speed = Math.floor(results.wind.speed)
+    let html =
+    
 `
-<h1 class='lic Location'>${results.location.name}</h1>
-<h3 class='lic Description'>${results.current.weather_descriptions}</h3>
-<h3 class='lic Temperature'>${results.current.temperature} °F </h3>
+<h1 class='lic Location'>${results.name}</h1>
+<h3 class='lic Description''>${results.weather[0].description}</h3>
+<h3 class='lic Temperature'>${count_temp} °F </h3>
 
-<h3 class='lic Wind'>${results.current.wind_dir} ${results.current.wind_speed} mph</h3>
+<h3 class='lic Wind'> ${count_speed} mph</h3>
 `
+
 result.innerHTML = html;
-
 
 
 
